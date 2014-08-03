@@ -19,6 +19,11 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+        
+        $serviceManager = $e->getApplication()->getServiceManager();
+        $em = $serviceManager->get('Doctrine\ORM\EntityManager');
+        $doctrineEventManager = $em->getEventManager();
+        $doctrineEventManager->addEventListener(array(\Doctrine\ORM\Events::postLoad), new \Application\BaseLibrary\DoctrineInjector($serviceManager) );
     }
 
     public function getConfig()

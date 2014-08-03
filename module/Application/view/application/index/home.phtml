@@ -1,9 +1,14 @@
+<?php 
+    $response = $this->viewModel()->getCurrent()->getVariables();
+?>
+
 <div class="container">
     <div class="jumbotron">
         <h1><?php echo $this->translate('Home Management System'); ?></h1>
         <h2><?php echo $this->translate('Put You House in Order'); ?></h2>
         <p>Running a house in today's world can be difficult, with so much information and things to remember it can be a daunting task.</p>
         <p>With the Home Management System things can be a lot easier</p>
+        <p>You are now logged in as <?php echo $response['username']?></p>
     </div>
 
     <div class="row">
