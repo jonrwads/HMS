@@ -1,0 +1,46 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+    $title = 'Users';
+    $this->headTitle($title);
+    $users = $this->viewModel()->getCurrent()->getVariables()['users'];
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a class="btn btn-primary btn-small active btn-success" role="button" href="/application/user/add">New User</a>
+    
+    <table class="table table-bordered table-hover table-striped table-condensed">
+        <thead>
+            <tr>
+                <th class="text-center" width="20%">Username</th>
+                <th class="text-center" width="50%">Name</th>
+                <th class="text-center" width="15%">Created On</th>
+                <th class="text-center" width="15%">Action</th>
+            </tr>
+        </thead>
+        <tbody>          
+            <?php                  
+                if(count($users) == 0) {
+                   echo '<tr><td colspan="3">No Users In Database</td></tr>'; 
+                }
+                else {                    
+                    foreach($users as $user) {
+                        $createdOn = $user->createdOn->format('Y-m-d');
+                        if($user->enabled){
+                            echo '<tr>';
+                        }
+                        else {
+                            echo '<tr class="danger">';
+                        }
+                        echo "<td>$user->username</td>";
+                        echo "<td>$user->name</td>";
+                        echo "<td class=\"text-center\">$createdOn</td>";
+                        echo '<td class="text-center"><a class="btn btn-sm btn-primary" role="button" href="/application/user/edit">Edit</a> <a class="btn btn-sm btn-danger" role="button" href="/application/user/delete">Delete</a></td>';
+                        echo '</tr>';
+                    }
+                }
+            ?>
+        </tbody>
+    </table>
+</p>

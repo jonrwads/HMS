@@ -77,7 +77,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\User' => 'Application\Controller\UserController',
         ),
     ),
     'view_manager' => array(
@@ -90,7 +91,8 @@ return array(
             'layout/login'              => __DIR__ . '/../view/layout/login.phtml',
             'layout/layout'             => __DIR__ . '/../view/layout/layout.phtml',
             'application/index/index'   => __DIR__ . '/../view/application/index/index.phtml',
-            'application/home'          => __DIR__ . '/../view/application/index/home.phtml',
+            'application/home'          => __DIR__ . '/../view/application/index/home.phtml',            
+            'application/user/index'    => __DIR__ . '/../view/application/user/index.phtml',
             'error/404'                 => __DIR__ . '/../view/error/404.phtml',
             'error/index'               => __DIR__ . '/../view/error/index.phtml',
         ),

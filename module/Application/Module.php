@@ -19,8 +19,13 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-        
         $serviceManager = $e->getApplication()->getServiceManager();
+        
+        $e->getApplication()->getServiceManager()->get('viewhelpermanager')->setFactory('controllerName', function($serviceManager) use ($e) {
+            $viewHelper = new \Application\BaseLibrary\ControllerName($e->getRouteMatch());
+            return $viewHelper;
+        });
+
         $em = $serviceManager->get('Doctrine\ORM\EntityManager');
         $doctrineEventManager = $em->getEventManager();
         $doctrineEventManager->addEventListener(array(\Doctrine\ORM\Events::postLoad), new \Application\BaseLibrary\DoctrineInjector($serviceManager) );

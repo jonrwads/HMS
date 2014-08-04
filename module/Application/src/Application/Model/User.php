@@ -84,7 +84,8 @@ class User extends BaseEntity {
             'createdOn'     => $this->createdOn->format('c'),
             'modifiedOn'    => !is_null($this->modifiedOn)?$this->modifiedOn->format('c'):null,
             'username'      => $this->username,
-            'name'          => $this->name
+            'name'          => $this->name,
+            'enabled'       => $this->enabled
         ];
     }
 }
