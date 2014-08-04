@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping            as ORM;
  */
 
 class User extends BaseEntity {
+    public $_generatorInstructions = [        
+    ];
     
     /**
      *
@@ -77,6 +79,12 @@ class User extends BaseEntity {
      * @ORM\Column(type = "boolean", nullable = false)
      */
     protected $enabled = true;
+    
+    public function __construct(\Zend\ServiceManager\ServiceManager $serviceManager = null) {
+        parent::__construct($serviceManager);
+        $this->createdOn = new \DateTime();
+        $this->id = uniqid('usr', true);
+    }
     
     public function toIdentity() {
         return [

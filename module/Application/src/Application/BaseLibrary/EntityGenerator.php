@@ -1,7 +1,9 @@
 <?php
 namespace Application\BaseLibrary;
 
-class EntityGenerator implements Zend\ServiceManager\ServiceLocatorAwareInterface {
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+
+class EntityGenerator implements ServiceLocatorAwareInterface{
     
     private $_serviceLocator;
     private $_translator;

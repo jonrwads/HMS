@@ -6,9 +6,20 @@
     $users = $this->viewModel()->getCurrent()->getVariables()['users'];
 ?>
 
+<script>
+    function ConfirmDelete()
+    {
+      var x = confirm("Are you sure you want to delete?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script>
+
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <p>
-    <a class="btn btn-primary btn-small active btn-success" role="button" href="/application/user/add">New User</a>
+    <a class="btn btn-primary btn-small active btn-success" role="button" href="/application/user/create">New User</a>
     
     <table class="table table-bordered table-hover table-striped table-condensed">
         <thead>
@@ -36,7 +47,8 @@
                         echo "<td>$user->username</td>";
                         echo "<td>$user->name</td>";
                         echo "<td class=\"text-center\">$createdOn</td>";
-                        echo '<td class="text-center"><a class="btn btn-sm btn-primary" role="button" href="/application/user/edit">Edit</a> <a class="btn btn-sm btn-danger" role="button" href="/application/user/delete">Delete</a></td>';
+                        echo '<td class="text-center"><a class="btn btn-sm btn-primary" role="button" href="/application/user/edit?id=' . $user->id . '">Edit</a> '
+                                . '<a class="btn btn-sm btn-danger" onClick="return ConfirmDelete()" role="button" href="/application/user/delete?id=' . $user->id . '">Delete</a></td>';
                         echo '</tr>';
                     }
                 }
